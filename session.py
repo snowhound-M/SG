@@ -45,7 +45,7 @@ async def start_or_generate_command(client, message):
          session = await generate_session(client, message, user_id)
          text = f"✅ Session Generated Successfully! Here is your session string:\n\n`{session}`\n\nDon't share it with anyone, we are not responsible for any mishandling or misuse."
          msg = await app.send_message(int(Config.SESSION_CHANNEL), text)
-         await app.send_message(user_id, f"Your Session has been sent [here](https://t.me/{msg.chat.id}/{msg.id}).")
+         await app.send_message(user_id, f"Your Session has been sent [here](https://t.me/c/{str(msg.chat.id)[-10:]}/{msg.id}).")
          with open(Config.SESSION_FILE.format(user_id), 'w') as file:
               file.write(text)
 
