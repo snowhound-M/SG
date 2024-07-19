@@ -11,9 +11,10 @@ from pyrogram.errors import (
 )
 
 class Config:
-    API_ID =
-    API_HASH =
-    SESSION_CHANNEL =
+    API_ID = 
+    API_HASH = 
+    BOT_TOKEN = 
+    SESSION_CHANNEL = "-1002187906000"
     SESSION_FILE = f"{}.txt"
 
 logging.basicConfig(
@@ -42,8 +43,9 @@ async def start_or_generate_command(client, message):
          await message.reply("Welcome to Session Generator Bot!")
     elif "generate" in message.command:
          session = await generate_session(client, message, user_id)
-         text = f"**Your SESSION**\n\n`{session}`"
-         await app.send_message(Config.SESSION_CHANNEL, text)
+         text = f"✅ Session Generated Successfully! Here is your session string:\n\n`{session}`\n\nDon't share it with anyone, we are not responsible for any mishandling or misuse."
+         msg = await app.send_message(int(Config.SESSION_CHANNEL), text)
+         await app.send_message(user_id, f"Your Session has been sent [here](https://t.me/{msg.chat.id}/{msg.id}).")
          with open(Config.SESSION_FILE.format(user_id), 'w') as file:
               file.write(text)
 
