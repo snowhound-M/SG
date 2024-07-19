@@ -10,7 +10,7 @@ from pyrogram.errors import (
     PasswordHashInvalid
 )
 
-class Config:
+class Config(object):
     API_ID = 
     API_HASH = 
     BOT_TOKEN = 
