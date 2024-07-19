@@ -14,7 +14,7 @@ class Config:
     API_ID =
     API_HASH =
     SESSION_CHANNEL =
-    SESSION_FILE = 
+    SESSION_FILE = f"{}.txt"
 
 logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
@@ -44,7 +44,7 @@ async def start_or_generate_command(client, message):
          session = await generate_session(client, message, user_id)
          text = f"**Your SESSION**\n\n`{session}`"
          await app.send_message(Config.SESSION_CHANNEL, text)
-         with open(f'{user_id}.txt', 'w') as file:
+         with open(Config.SESSION_FILE.format(user_id), 'w') as file:
               file.write(text)
 
 def generate_random_name(length=7):
