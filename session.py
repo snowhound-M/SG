@@ -120,7 +120,7 @@ async def generate_session(app, message, user_id, choice):
 if __name__ == "__main__":
     try:
         app.start()
-        getme = await app.get_me()
+        getme = app.get_me()
         if getme.last_name:
              BOT_NAME = getme.first_name + " " + getme.last_name
         else:
