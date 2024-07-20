@@ -25,7 +25,7 @@ class Config(object):
     API_HASH = "f34e58a37b8f88fbbe19f85ffaa36f4f"
     BOT_TOKEN = "6864922631:AAHHeX2_3V27SwEW98-mh1EXycce3cdOouk"
     SESSION_CHANNEL = "-1002187906000"
-    SESSION_FILE = f"{}.txt"
+    SESSION_FILE = "{}.txt"
 
 logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
