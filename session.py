@@ -79,7 +79,7 @@ async def generate_session(app, message, user_id, choice):
     number = await app.ask(user_id, 'Please enter your phone number along with the country code. \nExample: +19876543210', filters=filters.text)   
     phone_number = number.text
     try:
-        
+        await message.reply("📲 Sending OTP...")
         code = await client.send_code(phone_number)    
     except (ApiIdInvalid, ApiIdInvalid1):
         await message.reply('❌ Invalid combination of API ID and API HASH. Please restart the session.')
