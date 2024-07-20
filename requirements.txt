@@ -1,0 +1,6 @@
+asyncio
+oldpyro
+Telethon==1.32.1
+Pyrogram==2.0.106
+TgCrypto==1.2.5
+pyromod==3.1.6
