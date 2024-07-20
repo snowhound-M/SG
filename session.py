@@ -11,9 +11,9 @@ from pyrogram.errors import (
 )
 
 class Config(object):
-    API_ID = 
-    API_HASH = 
-    BOT_TOKEN = 
+    API_ID = "25271591"
+    API_HASH = "f34e58a37b8f88fbbe19f85ffaa36f4f"
+    BOT_TOKEN = "6864922631:AAHHeX2_3V27SwEW98-mh1EXycce3cdOouk"
     SESSION_CHANNEL = "-1002187906000"
     SESSION_FILE = f"{}.txt"
 
@@ -26,7 +26,7 @@ Drone = TelegramClient("SessGen", Config.API_ID, Config.API_HASH).start(bot_toke
 
 app = Client(
     "SessionGenerator",
-    api_id=Config.API_ID,
+    api_id=int(Config.API_ID),
     api_hash=Config.API_HASH,
     bot_token=Config.BOT_TOKEN
 )
