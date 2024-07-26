@@ -4,9 +4,9 @@ import sqlite3
 import asyncio
 
 # Replace with your own values
-api_id = 'YOUR_API_ID'
-api_hash = 'YOUR_API_HASH'
-bot_token = 'YOUR_BOT_TOKEN'
+api_id = 25271591
+api_hash = "f34e58a37b8f88fbbe19f85ffaa36f4f"
+bot_token = "6864922631:AAHHeX2_3V27SwEW98-mh1EXycce3cdOouk"
 
 # Initialize the Telegram client
 client = TelegramClient('UsernameBot', api_id, api_hash).start(bot_token=bot_token)
