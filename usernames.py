@@ -6,7 +6,7 @@ import asyncio
 # Replace with your own values
 api_id = 25271591
 api_hash = "f34e58a37b8f88fbbe19f85ffaa36f4f"
-bot_token = "6864922631:AAHHeX2_3V27SwEW98-mh1EXycce3cdOouk"
+bot_token = "7268485439:AAEJGIflr-VRhYfXl0Suz5sWFoW7UYwqHdg"
 
 # Initialize the Telegram client
 client = TelegramClient('UsernameBot', api_id, api_hash).start(bot_token=bot_token)
