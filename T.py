@@ -41,12 +41,12 @@ buttons = [
 [Button.inline("Approval", b"approval_info"), Button.inline("Bans", b"bans_info"), Button.inline("Blocklists", b"blocklists_info")],
 [Button.inline("CAPTCHA", b"captcha_info"), Button.inline("Clean Commands", b"clean_commands_info"), Button.inline("Clean Service", b"clean_service_info")],
 [Button.inline("Connections", b"connections_info"), Button.inline("Disabling", b"disabling_info"), Button.inline("Federations", b"federations_info")],
-[Button.inline("Filters", b"filters_info"), Button.inline("Formatting", b"filters_formatting"), Button.inline("Greetings", b"btn5_3")],
-[Button.inline("Button 6-1", b"btn6_1"), Button.inline("Button 6-2", b"btn6_2"), Button.inline("Button 6-3", b"btn6_3")],
-[Button.inline("Button 7-1", b"btn7_1"), Button.inline("Button 7-2", b"btn7_2"), Button.inline("Button 7-3", b"btn7_3")],
-[Button.inline("Button 8-1", b"btn8_1"), Button.inline("Button 8-2", b"btn8_2"), Button.inline("Button 8-3", b"btn8_3")],
-[Button.inline("Button 9-1", b"btn9_1"), Button.inline("Button 9-2", b"btn9_2"), Button.inline("Button 9-3", b"btn9_3")],
-[Button.inline("Button 10-1", b"btn10_1")]  # Last row with only one button
+[Button.inline("Filters", b"filters_info"), Button.inline("Formatting", b"filters_formatting"), Button.inline("Greetings", b"greetings_info")],
+[Button.inline("Button 6-1", b"btn6_1"), Button.inline("Languages", b"languages_info"), Button.inline("Locks", b"locks_info")],
+[Button.inline("Log Channels", b"log_channels_info"), Button.inline("Button 7-2", b"btn7_2"), Button.inline("Button 7-3", b"btn7_3")],
+[Button.inline("Pin", b"pin_info"), Button.inline("Privacy", b"privacy_info"), Button.inline("Purges", b"purges_info")],
+[Button.inline("Reports", b"reports_info"), Button.inline("Rules", b"rules_info"), Button.inline("Topics", b"topics_info")],
+[Button.inline("Warnings", b"warnings_info")]  # Last row with only one button
 ]
 
 await event.reply(
@@ -635,7 +635,313 @@ buttons=[
 ]
 )
 
+@client.on(events.CallbackQuery(data=b'formatting_markdown'))
+async def formatting_markdown(event):
+await event.answer("Sending Markdown Formatting information...", alert=True)
+await event.edit(
+"**Markdown Formatting**\n\n"
+"You can format your message using bold, italics, underline, and much more. Go ahead and experiment!\n\n"
+"**Supported markdown:**\n"
+"- `code words`: Backticks are used for monospace fonts. Shows as: `code words`.\n"
+"- _italic words_: Underscores are used for italic fonts. Shows as: _italic words_.\n"
+"- *bold words*: Asterisks are used for bold fonts. Shows as: *bold words*.\n"
+"- ~strikethrough~: Tildes are used for strikethrough. Shows as: ~strikethrough~.\n"
+"- __underline__: Double underscores are used for underlines. Shows as: __underline__. NOTE: Some clients interpret this as italic. Try using your app's built-in formatting if needed.\n"
+"- ||spoiler||: Double vertical bars are used for spoilers. Shows as: ||spoiler||.\n"
+"- ```shell\necho \"hi\"\n```: Triple backticks are used for code blocks. You can specify the code language in the first line. Shows as:\n```\necho \"hi\"\n```\n"
+"- > quote: Prefix a line with `>` to quote it. Shows as: > quote.\n"
+"- **> first line\n> second\n> third\n> hidden||: Start a quote with `>` and end it with `||` to create a multiline quote. Shows the first three lines, and then collapses the rest. Shows as:\nfirst line\nsecond\nthird\nhidden\n"
+"- [hyperlink](missrose.org): Creates a hyperlink. Shows as: [hyperlink](missrose.org).\n"
+"- [My button](buttonurl://missrose.org): Creates a button named 'My button' which opens missrose.org when clicked.\n"
+"  If you want buttons on the same row, use the `:same` tag:\n"
+"  [button 1](buttonurl://example.com)\n"
+"  [button 2](buttonurl://example.com:same)\n"
+"  [button 3](buttonurl://example.com)\n"
+"  Button 1 and 2 will be on the same line, with 3 underneath.\n"
+"- [note button](buttonurl://#notename): Creates a button that links to a note. Clicking it redirects the user to the bot's PM to see the note.\n\n"
+"For more examples, visit: [Button Generator](https://missrose.org/tools/buttons/).\n\n",
+buttons=[
+[Button.inline("Buttons", b"formatting_buttons")],
+[Button.inline("Back", b"help_back")]
+]
+)
 
+@client.on(events.CallbackQuery(data=b'formatting_buttons'))
+async def formatting_buttons(event):
+await event.answer("Sending Buttons information...", alert=True)
+await event.edit(
+"**Buttons**\n\n"
+"One of Telegram's popular features is the ability to add buttons to your messages. This module explains how to use buttons in your messages!\n\n"
+"**Simple buttons:**\n"
+"- To create a button called 'Google' that opens google.com:\n-> `[Google](buttonurl://google.com)`\n\n"
+"**Buttons on the same line:**\n"
+"- To create two buttons on the same line (e.g., 'Google' and 'Bing'), use the `:same` tag on the second button:\n-> `[Google](buttonurl://google.com)`\n"
+"   `[Bing](buttonurl://bing.com:same)`\n\n"
+"**Note buttons:**\n"
+"- To create buttons that open notes, use:\n-> `[First note](buttonurl://#my_note)`\n"
+"   `[Second note](buttonurl://#second_note:same)`\n\n"
+"**Advanced example:**\n"
+"- To create three buttons, with the first two on the same line and the third opening a note:\n-> `[Google](buttonurl://google.com)`\n"
+"   `[Bing](buttonurl://bing.com:same)`\n"
+"   `[Other search engines](buttonurl://#search_engines)`\n\n"
+"**Online button generator:**\n"
+"- If the syntax is confusing, use our [official button generator tool](https://missrose.org/docs/formatting/button-generator/).\n\n"
+"Remember to save buttons in Rose to use them; they can't be sent from your account directly.\n",
+buttons=[
+[Button.inline("Back", b"help_back")]
+]
+)
+
+@client.on(events.CallbackQuery(data=b'formatting_random_content'))
+async def formatting_random_content(event):
+await event.answer("Sending Random Content information...", alert=True)
+await event.edit(
+"**Random Content**\n\n"
+"Another fun feature is randomizing the contents of a message. This can make messages like welcome notes more engaging and personalized!\n\n"
+"**How to use random contents:**\n"
+"- **%%%**: Use this separator to add 'random' replies. For example:\n\n"
+"  ```\n"
+"  hello\n"
+"  %%%\n"
+"  how are you\n"
+"  ```\n\n"
+"  This setup will randomly choose between sending 'hello' or 'how are you'. Use this feature to add variety to your notes, filters, or greetings.\n\n"
+"**Example welcome message:**\n"
+"- To present one of three different messages to a new user, you could use:\n\n"
+"  ```\n"
+"  /setwelcome\n"
+"  hello there {first}!\n"
+"  %%%\n"
+"  Ooooh, {first} is in the house!\n"
+"  %%%\n"
+"  Welcome to the group, {first}!\n"
+"  ```\n\n"
+"  Each time a new user joins, they'll see one of these messages.\n",
+buttons=[
+[Button.inline("Back", b"help_back")]
+]
+)
+
+@client.on(events.CallbackQuery(data=b'greetings_info'))
+async def greetings_info(event):
+await event.answer("Sending Greetings information...", alert=True)
+await event.edit(
+"**Greetings**\n\n"
+"Give your members a warm welcome with the greetings module! Or a sad goodbye... Depends!\n\n"
+"**Admin commands:**\n"
+"- **/welcome <yes/no/on/off>**: Enable or disable welcome messages.\n"
+"- **/goodbye <yes/no/on/off>**: Enable or disable goodbye messages.\n"
+"- **/setwelcome <text>**: Set a new welcome message. Supports markdown, buttons, and fillings.\n"
+"- **/resetwelcome**: Reset the welcome message.\n"
+"- **/setgoodbye <text>**: Set a new goodbye message. Supports markdown, buttons, and fillings.\n"
+"- **/resetgoodbye**: Reset the goodbye message.\n"
+"- **/cleanwelcome <yes/no/on/off>**: Delete old welcome messages. The previous message will get deleted when a new person joins or after 5 minutes.\n",
+buttons=[
+[Button.inline("Example Usage", b"greetings_example"), Button.inline("CAPTCHA", b"captcha_info")],
+[Button.inline("Clean Service", b"clean_service_info"), Button.inline("Formatting", b"filters_formatting")],
+[Button.inline("Back", b"help_back")]
+]
+)
+
+@client.on(events.CallbackQuery(data=b'greetings_example'))
+async def greetings_example(event):
+await event.answer("Sending Greetings Example Usage...", alert=True)
+await event.edit(
+"**Example Usage**\n\n"
+"Welcomes and goodbyes can be customised in many ways - here are some examples!\n\n"
+"**Examples:**\n"
+"- **Turn on welcomes:**\n"
+"-> `/welcome on`\n\n"
+"- **Disable welcomes:**\n"
+"-> `/welcome off`\n\n"
+"- **Turn on goodbyes** (note: goodbye messages won't be sent in groups with over 50 members):\n"
+"-> `/goodbye on`\n\n"
+"- **Set a simple custom welcome message:**\n"
+"-> `/setwelcome Hi there, welcome to the chat! Remember to be respectful and follow the rules.`\n\n"
+"- **Set a simple custom welcome message, with media:**\n"
+"-> (replying to media) `/setwelcome By replying to a picture, you can set that picture in the welcome.`\n\n"
+"- **Set a custom welcome message, using fillings to automatically:**\n"
+" - use the new user's name\n"
+" - use the current group name\n"
+" - create a button to the group rules\n"
+"-> `/setwelcome Hi {first}, welcome to {chatname}! Remember to be respectful and follow the rules. {rules}`\n\n"
+"- **Automatically delete old welcome messages:**\n"
+"-> `/cleanwelcome on`\n\n"
+"- **Get the welcome message without any formatting:**\n"
+"-> `/welcome noformat`\n",
+buttons=[
+[Button.inline("Fillings", b"filters_fillings")],
+[Button.inline("Back", b"help_back")]
+]
+)
+
+@client.on(events.CallbackQuery(data=b'languages_info'))
+async def languages_info(event):
+await event.answer("Sending Languages information...", alert=True)
+await event.edit(
+"**Languages**\n\n"
+"Not every group speaks fluent English; some groups would rather have Rose respond in their own language.\n\n"
+"This is where translations come in; you can change the language of the bot's replies to be in the language of your choice!\n\n"
+"**Available languages are:**\n"
+"- **EN-GB** (British English)\n\n"
+"**Note:** The `/help` and `/start` commands are not translated.\n\n"
+"**Admin commands:**\n"
+"- `/setlang <language>`: Set the bot language.\n",
+buttons=[
+[Button.inline("Back", b"help_back")]
+]
+)
+
+@client.on(events.CallbackQuery(data=b'pin_info'))
+async def pin_info(event):
+await event.answer("Sending Pin information...", alert=True)
+await event.edit(
+"**Pin**\n\n"
+"All the pin related commands can be found here; keep your chat up to date on the latest news with a simple pinned message!\n\n"
+"**User commands:**\n"
+"- `/pinned`: Get the current pinned message.\n\n"
+"**Admin commands:**\n"
+"- `/pin`: Pin the message you replied to. Add 'loud' or 'notify' to send a notification to group members.\n"
+"- `/permapin <text>`: Pin a custom message through the bot. This message can contain markdown, buttons, and all the other cool features.\n"
+"- `/unpin`: Unpin the current pinned message. If used as a reply, unpins the replied to message.\n"
+"- `/unpinall`: Unpins all pinned messages.\n"
+"- `/antichannelpin <yes/no/on/off>`: Don't let telegram auto-pin linked channels. If no arguments are given, shows current setting.\n"
+"- `/cleanlinked <yes/no/on/off>`: Delete messages sent by the linked channel.\n",
+buttons=[
+[Button.inline("Back", b"help_back")]
+]
+)
+
+@client.on(events.CallbackQuery(data=b'privacy_info'))
+async def privacy_info(event):
+await event.answer("Sending Privacy information...", alert=True)
+await event.edit(
+"**Privacy**\n\n"
+"The privacy module allows you to see the bot privacy policy, as well as view and delete the data the bot stores about you.\n\n"
+"**The single command which can only be used in PM:**\n"
+"- `/privacy`: Provides all the tools relating to privacy, such as listing the privacy policy, retrieving, and deleting your data.\n",
+buttons=[
+[Button.inline("Back", b"help_back")]
+]
+)
+
+@client.on(events.CallbackQuery(data=b'purges_info'))
+async def purges_info(event):
+await event.answer("Sending Purges information...", alert=True)
+await event.edit(
+"**Purges**\n\n"
+"Need to delete lots of messages? That's what purges are for!\n\n"
+"**Admin commands:**\n"
+"- `/purge`: Delete all messages from the replied to message, to the current message.\n"
+"- `/purge <X>`: Delete the following X messages after the replied to message.\n"
+"- `/spurge`: Same as purge, but doesn't send the final confirmation message.\n"
+"- `/del`: Deletes the replied to message.\n"
+"- `/purgefrom`: Reply to a message to mark the message as where to purge from - this should be used followed by a /purgeto.\n"
+"- `/purgeto`: Delete all messages between the replied to message, and the message marked by the latest /purgefrom.\n\n"
+"**Examples:**\n"
+"- Delete all messages from the replied to message, until now.\n"
+"  -> `/purge`\n\n"
+"- Mark the first message to purge from (as a reply).\n"
+"  -> `/purgefrom`\n\n"
+"- Mark the message to purge to (as a reply). All messages between the previously marked /purgefrom and the newly marked /purgeto will be deleted.\n"
+"  -> `/purgeto`\n",
+buttons=[
+[Button.inline("Back", b"help_back")]
+]
+)
+
+@client.on(events.CallbackQuery(data=b'reports_info'))
+async def reports_info(event):
+await event.answer("Sending Reports information...", alert=True)
+await event.edit(
+"**Reports**\n\n"
+"We're all busy people who don't have time to monitor our groups 24/7. But how do you react if someone in your group is spamming?\n\n"
+"Presenting reports; if someone in your group thinks someone needs reporting, they now have an easy way to call all admins.\n\n"
+"**User commands:**\n"
+"- `/report`: Reply to a message to report it for admins to review.\n"
+"- `admin`: Same as /report\n\n"
+"**Admin commands:**\n"
+"- `/reports <yes/no/on/off>`: Enable/disable user reports.\n\n"
+"To report a user, simply reply to their message with @admin or /report; Rose will then reply with a message stating that admins have been notified. This message tags all the chat admins; same as if they had been @'ed.\n\n"
+"Note that the report commands do not work when admins use them; or when used to report an admin. Rose assumes that admins don't need to report, or be reported!",
+buttons=[
+[Button.inline("Back", b"help_back")]
+]
+)
+
+@client.on(events.CallbackQuery(data=b'rules_info'))
+async def rules_info(event):
+await event.answer("Sending Rules information...", alert=True)
+await event.edit(
+"**Rules**\n\n"
+"Every chat works with different rules; this module will help make those rules clearer!\n\n"
+"**User commands:**\n"
+"- `/rules`: Check the current chat rules.\n\n"
+"**Admin commands:**\n"
+"- `/setrules <text>`: Set the rules for this chat. Supports markdown, buttons, fillings, etc.\n"
+"- `/privaterules <yes/no/on/off>`: Enable/disable whether the rules should be sent in private.\n"
+"- `/resetrules`: Reset the chat rules to default.\n"
+"- `/setrulesbutton`: Set the rules button name when using {rules}.\n"
+"- `/resetrulesbutton`: Reset the rules button name from {rules} to default.\n\n"
+"**Examples:**\n"
+"- Get the unformatted rules text, to make them easier to edit:\n  -> `/rules noformat`\n\n"
+"- Set the name of the button to use when using the {rules} filling:\n  -> `/setrulesbutton Press me for the chat rules`",
+buttons=[
+[Button.inline("Formatting", b"filters_formatting")],
+[Button.inline("Back", b"help_back")]
+]
+)
+
+@client.on(events.CallbackQuery(data=b'topics_info'))
+async def topics_info(event):
+await event.answer("Sending Topics information...", alert=True)
+await event.edit(
+"**Topics**\n\n"
+"Manage your topic settings through Rose!\n\n"
+"Topics introduce lots of small differences to normal supergroups; this could affect how you would usually manage your chat. For example, certain forums might want to customise which topic the bot sends welcome messages in, so they don't end up in the default 'general' chat.\n\n"
+"You can also use the bot to create, rename, close, and delete your topics.\n\n"
+"**Admin commands:**\n"
+"- `/actiontopic`: Get the action topic for this forum.\n"
+"- `/setactiontopic`: Set the current topic as the default action topic for this forum.\n"
+"- `/newtopic <name>`: Create a new topic.\n"
+"- `/renametopic <name>`: Rename the current topic.\n"
+"- `/closetopic`: Close the current topic.\n"
+"- `/reopentopic`: Reopen the current closed topic.\n"
+"- `/deletetopic`: Delete the current topic, and all the topic messages. Cannot be undone!\n",
+buttons=[
+[Button.inline("Back", b"help_back")]
+]
+)
+
+@client.on(events.CallbackQuery(data=b'warnings_info'))
+async def warnings_info(event):
+await event.answer("Sending Warnings information...", alert=True)
+await event.edit(
+"**Warnings**\n\n"
+"Keep your members in check with warnings; stop them getting out of control!\n\n"
+"If you're looking for automated warnings, go read about the blocklist module.\n\n"
+"**Admin commands:**\n"
+"- `/warn <reason>`: Warn a user.\n"
+"- `/dwarn <reason>`: Warn a user by reply, and delete their message.\n"
+"- `/swarn <reason>`: Silently warn a user, and delete your message.\n"
+"- `/warns`: See a user's warnings.\n"
+"- `/rmwarn`: Remove a user's latest warning.\n"
+"- `/resetwarn`: Reset all of a user's warnings to 0.\n"
+"- `/resetallwarns`: Delete all the warnings in a chat. All users return to 0 warns.\n"
+"- `/warnings`: Get the chat's warning settings.\n"
+"- `/warnmode <ban/mute/kick/tban/tmute>`: View or set the chat's warn mode.\n"
+"- `/warnlimit <number>`: View or set the number of warnings before users are punished.\n"
+"- `/warntime <time>`: View or set how long warnings should last. Example time values: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks.\n\n"
+"**Examples:**\n"
+"- Warn a user:\n  -> `/warn @user For disobeying the rules`\n"
+"- Change the warning limit to 5; after 5 warnings, the warn action will trigger:\n  -> `/warnlimit 5`\n"
+"- Set all warnings to expire after 4 weeks:\n  -> `/warntime 4w`\n"
+"- Disable warn time; warnings will no longer expire:\n  -> `/warntime off`\n",
+buttons=[
+[Button.inline("Back", b"help_back")]
+]
+)
+  
 @client.on(events.CallbackQuery(data=b'help_back'))
 async def help_back(event):
 await help(event)
