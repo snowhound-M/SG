@@ -40,8 +40,8 @@ buttons = [
 [Button.inline("Admin", b"admin_info"), Button.inline("Antiflood", b"antiflood_info"), Button.inline("AntiRaid", b"antiraid_info")],
 [Button.inline("Approval", b"approval_info"), Button.inline("Bans", b"bans_info"), Button.inline("Blocklists", b"blocklists_info")],
 [Button.inline("CAPTCHA", b"captcha_info"), Button.inline("Clean Commands", b"clean_commands_info"), Button.inline("Clean Service", b"clean_service_info")],
-[Button.inline("Button 4-1", b"btn4_1"), Button.inline("Button 4-2", b"btn4_2"), Button.inline("Button 4-3", b"btn4_3")],
-[Button.inline("Button 5-1", b"btn5_1"), Button.inline("Button 5-2", b"btn5_2"), Button.inline("Button 5-3", b"btn5_3")],
+[Button.inline("Connections", b"connections_info"), Button.inline("Disabling", b"disabling_info"), Button.inline("Federations", b"federations_info")],
+[Button.inline("Filters", b"filters_info"), Button.inline("Formatting", b"filters_formatting"), Button.inline("Greetings", b"btn5_3")],
 [Button.inline("Button 6-1", b"btn6_1"), Button.inline("Button 6-2", b"btn6_2"), Button.inline("Button 6-3", b"btn6_3")],
 [Button.inline("Button 7-1", b"btn7_1"), Button.inline("Button 7-2", b"btn7_2"), Button.inline("Button 7-3", b"btn7_3")],
 [Button.inline("Button 8-1", b"btn8_1"), Button.inline("Button 8-2", b"btn8_2"), Button.inline("Button 8-3", b"btn8_3")],
@@ -426,6 +426,214 @@ await event.edit(
 buttons=[[Button.inline("Back", b"help_back")]]
 )
 
+@client.on(events.CallbackQuery(data=b'connections_info'))
+async def connections_info(event):
+await event.answer("Sending Connections information...", alert=True)
+await event.edit(
+"**Connections**\n\n"
+"Sometimes, you just want to add some notes and filters to a group chat, but you don't want everyone to see; This is where connections come in...\n\n"
+"This allows you to connect to a chat's database and add things to it without the chat knowing about it! For obvious reasons, you need to be an admin to add things; but any member can view your data. (banned/kicked users can't!)\n\n"
+"**Admin commands:**\n"
+"- `/connect <chatid/username>`: Connect to the specified chat, allowing you to view/edit contents.\n"
+"- `/disconnect`: Disconnect from the current chat.\n"
+"- `/reconnect`: Reconnect to the previously connected chat.\n"
+"- `/connection`: See information about the currently connected chat.\n\n"
+"You can retrieve the chat id by using the `/id` command in your chat. Don't be surprised if the id is negative; all supergroups have negative ids.",
+buttons=[[Button.inline("Back", b"help_back")]]
+)
+
+@client.on(events.CallbackQuery(data=b'disabling_info'))
+async def disabling_info(event):
+await event.answer("Sending Disabling information...", alert=True)
+await event.edit(
+"**Disabling**\n\n"
+"Not everyone wants every feature that Rose offers. Some commands are best left unused; to avoid spam and abuse.\n\n"
+"This allows you to disable some commonly used commands, so no one can use them. It'll also allow you to autodelete them, stopping people from bluetexting.\n\n"
+"**Admin commands:**\n"
+"- `/disable <commandname>`: Stop users from using `commandname` in this group.\n"
+"- `/enable <commandname>`: Allow users to use `commandname` in this group.\n"
+"- `/disableable`: List all disableable commands.\n"
+"- `/disabledel <yes/no/on/off>`: Delete disabled commands when used by non-admins.\n"
+"- `/disableadmin <yes/no/on/off>`: Stop admins from using disabled commands too.\n"
+"- `/disabled`: List the disabled commands in this chat.\n\n"
+"**Examples:**\n"
+"- Stop people from using the info command:\n"
+"  `/disable info`\n"
+"- Enable the info command (e.g., undo a disable):\n"
+"  `/enable info`\n"
+"- Disable all commands listed in the `/disableable`:\n"
+"  `/disable all`\n"
+"- Delete disabled commands that get used:\n"
+"  `/disabledel on`\n"
+"- Make sure that disabled commands are also disabled for admins:\n"
+"  `/disableadmin on`\n\n"
+"**Note:**\n"
+"By default, disabling a command only disables it for non-admins. To stop admins from using disabled commands too, check the `/disableadmin` toggle.\n"
+"Disabled commands are still accessible through the `/connect` feature.",
+buttons=[[Button.inline("Back", b"help_back")]]
+)
+
+@client.on(events.CallbackQuery(data=b'federations_info'))
+async def federations_info(event):
+await event.answer("Sending Federations information...", alert=True)
+await event.edit(
+"**Federations**\n\n"
+"Ah, group management. It's all fun and games, until you start getting spammers in, and you need to ban them. Then you need to start banning more, and more, and it gets painful.\n"
+"But then you have multiple groups, and you don't want these spammers in any of your groups - how can you deal? Do you have to ban them manually, in all your groups?\n\n"
+"No more! With federations, you can make a ban in one chat overlap to all your other chats.\n"
+"You can even appoint federation admins, so that your trustworthiest admins can ban across all the chats that you want to protect.\n\n"
+"Choose an option below:",
+buttons=[
+[Button.inline("Fed Admin Commands", b"fed_admin_commands"), Button.inline("Federation Owner Commands", b"fed_owner_commands")],
+[Button.inline("User Commands", b"user_commands")],
+[Button.inline("Back", b"help_back")]
+]
+)
+
+@client.on(events.CallbackQuery(data=b'fed_admin_commands'))
+async def fed_admin_commands(event):
+await event.answer("Sending Fed Admin Commands information...", alert=True)
+await event.edit(
+"**Fed Admin Commands**\n\n"
+"The following is the list of all fed admin commands. To run these, you have to be a federation admin in the current federation.\n\n"
+"**Commands:**\n"
+"- `/fban`: Bans a user from the current chat's federation\n"
+"- `/unfban`: Unbans a user from the current chat's federation\n"
+"- `/feddemoteme <fedID>`: Demote yourself from a fed.\n"
+"- `/myfeds`: List all feds you are an admin in.",
+buttons=[[Button.inline("Back", b"help_back")]]
+)
+
+@client.on(events.CallbackQuery(data=b'fed_owner_commands'))
+async def fed_owner_commands(event):
+await event.answer("Sending Fed Owner Commands information...", alert=True)
+await event.edit(
+"**Federation Owner Commands**\n\n"
+"These are the list of available fed owner commands. To run these, you have to own the current federation.\n\n"
+"**Owner Commands:**\n"
+"- `/newfed <fedname>`: Creates a new federation with the given name. Only one federation per user.\n"
+"- `/renamefed <fedname>`: Rename your federation.\n"
+"- `/delfed`: Deletes your federation, and any information related to it. Will not unban any banned users.\n"
+"- `/fedtransfer <reply/username/mention/userid>`: Transfer your federation to another user.\n"
+"- `/fedpromote`: Promote a user to fedadmin in your fed. To avoid unwanted fedadmin, the user will get a message to confirm this.\n"
+"- `/feddemote`: Demote a federation admin in your fed.\n"
+"- `/fednotif <yes/no/on/off>`: Whether or not to receive PM notifications of every fed action.\n"
+"- `/fedreason <yes/no/on/off>`: Whether or not fedbans should require a reason.\n"
+"- `/subfed <FedId>`: Subscribe your federation to another. Users banned in the subscribed fed will also be banned in this one.\n"
+"- `/unsubfed <FedId>`: Unsubscribes your federation from another. Bans from the other fed will no longer take effect.\n"
+"- `/fedexport <csv/minicsv/json/human>`: Get the list of currently banned users. Default output is CSV.\n"
+"- `/fedimport <overwrite/keep> <csv/minicsv/json/human>`: Import a list of banned users.\n"
+"- `/setfedlog`: Sets the current chat as the federation log. All federation events will be logged here.\n"
+"- `/unsetfedlog`: Unset the federation log. Events will no longer be logged.\n"
+"- `/setfedlang`: Change the language of the federation log. Note: This does not change the language of Rose's replies to fed commands, only the log channel.",
+buttons=[[Button.inline("Back", b"help_back")]]
+)
+
+@client.on(events.CallbackQuery(data=b'user_commands'))
+async def user_commands(event):
+await event.answer("Sending User Commands information...", alert=True)
+await event.edit(
+"**User Commands**\n\n"
+"These commands do not require you to be admin of a federation. These commands are for general commands, such as looking up information on a fed, or checking a user's fbans.\n\n"
+"**Commands:**\n"
+"- `/fedinfo <FedID>`: Information about a federation.\n"
+"- `/fedadmins <FedID>`: List the admins in a federation.\n"
+"- `/fedsubs <FedID>`: List all federations your federation is subscribed to.\n"
+"- `/joinfed <FedID>`: Join the current chat to a federation. A chat can only join one federation. Chat owners only.\n"
+"- `/leavefed`: Leave the current federation. Only chat owners can do this.\n"
+"- `/fedstat`: List all the federations that you have been banned in.\n"
+"- `/fedstat <user ID>`: List all the federations that a user has been banned in.\n"
+"- `/fedstat <FedID>`: Gives information about your ban in a federation.\n"
+"- `/fedstat <user ID> <FedID>`: Gives information about a user's ban in a federation.\n"
+"- `/chatfed`: Information about the federation the current chat is in.\n"
+"- `/quietfed <yes/no/on/off>`: Whether or not to send ban notifications when fedbanned users join the chat.",
+buttons=[[Button.inline("Back", b"help_back")]]
+)
+
+@client.on(events.CallbackQuery(data=b'filters_info'))
+async def filters_info(event):
+await event.answer("Sending Filters information...", alert=True)
+await event.edit(
+"**Filters**\n\n"
+"Make your chat more lively with filters; The bot will reply to certain words!\n"
+"Filters are case insensitive; every time someone says your trigger words, Rose will reply with something else! Filters can also be used to create your own commands, if desired.\n\n"
+"**Commands:**\n"
+"- `/filter <trigger> <reply>`: Every time someone says \"trigger\", the bot will reply with \"reply\". For multiple word filters, quote the trigger.\n"
+"- `/filters`: List all chat filters.\n"
+"- `/stop <trigger>`: Stop the bot from replying to \"trigger\".\n"
+"- `/stopall`: Stop ALL filters in the current chat. This cannot be undone.\n\n"
+"Choose an option below:",
+buttons=[
+[Button.inline("Example Usage", b"filters_example_usage"), Button.inline("Formatting", b"filters_formatting")],
+[Button.inline("Back", b"help_back")]
+]
+)
+
+@client.on(events.CallbackQuery(data=b'filters_example_usage'))
+async def filters_example_usage(event):
+await event.answer("Sending Example Usage information...", alert=True)
+await event.edit(
+"**Example Usage**\n\n"
+"Filters can seem quite complicated; so here are some examples, so you can get some inspiration.\n\n"
+"**Examples:**\n"
+"- Set a filter:\n-> /filter hello Hello there! How are you?\n\n"
+"- Set a filter which uses the user's name through fillings:\n-> /filter hello Hello there {first}! How are you?\n\n"
+"- Set a filter on a sentence:\n-> /filter \"hello friend\" Hello back! Long time no see!\n\n"
+"- Set multiple filters at once by separating wrapping in brackets, and separating with commas:\n-> /filter (hi, hey, hello, \"hi there\") Hello back! Long time no see!\n\n"
+"- Set a filter that can only be used by admins:\n-> /filter \"trigger\" This filter wont happen if a normal user says it {admin}\n\n"
+"- Or, set a filter that can only be used by users:\n-> /filter \"trigger\" Admins won't trigger this {user}\n\n"
+"- If an admin wants to force a {user} filter to reply:\n-> trigger force\n\n"
+"- To get the unformatted version of a filter, to copy and edit it, simply say the trigger followed by the keyword \"noformat\":\n-> trigger noformat\n\n"
+"- To save a \"protected\" filter, which cant be forwarded:\n-> /filter \"example\" This filter cant be forwarded {protect}\n\n"
+"- If you want the filter to reply to the person you replied to, instead of you:\n-> /filter \"magic\" Watch out for wizards! {replytag}\n\n"
+"- To save a file, image, gif, or any other attachment, simply reply to file with:\n-> /filter trigger\n\n"
+"- To set a filter which replies with a random answer from a preset list:\n-> /filter test\nAnswer one\n%%%\nAnswer two\n\n"
+"- To set a filter which gives a different reply to admins users, you can mix permission fillings with random contents:\n-> /filter test\nOnly admins see this {admin}\n%%%\nOnly users see this {user}",
+buttons=[
+[Button.inline("Fillings", b"filters_fillings")],
+[Button.inline("Back", b"help_back")]
+]
+)
+
+@client.on(events.CallbackQuery(data=b'filters_fillings'))
+async def filters_fillings(event):
+await event.answer("Sending Fillings information...", alert=True)
+await event.edit(
+"**Fillings**\n\n"
+"You can also customise the contents of your message with contextual data. For example, you could mention a user by name in the welcome message, or mention them in a filter!\n\n"
+"**Supported fillings:**\n"
+"- `{first}`: The user's first name.\n"
+"- `{last}`: The user's last name.\n"
+"- `{fullname}`: The user's full name.\n"
+"- `{username}`: The user's username. If they don't have one, mentions the user instead.\n"
+"- `{mention}`: Mentions the user with their firstname.\n"
+"- `{id}`: The user's ID.\n"
+"- `{chatname}`: The chat's name.\n"
+"- `{rules}`: Create a button to the chat's rules.\n"
+"- `{preview}`: Enables link previews for this message. Useful when using links to Instant View pages.\n"
+"- `{preview:top}`: Shows the link preview for this message ABOVE the message text.\n"
+"- `{nonotif}`: Disables the notification for this message.\n"
+"- `{protect}`: Stop this message from being forwarded, or screenshotted.\n"
+"- `{mediaspoiler}`: Marks the message photo/video/animation as being a spoiler.\n\n"
+"**Example usages:**\n"
+"- Save a filter using the user's name:\n-> /filter test {first} triggered this filter.\n\n"
+"- Add a rules button to a note:\n-> /save info Press the button to read the chat rules! {rules}\n\n"
+"- Mention a user in the welcome message:\n-> /setwelcome Welcome {mention} to {chatname}!",
+buttons=[[Button.inline("Back", b"help_back")]]
+)
+
+@client.on(events.CallbackQuery(data=b'filters_formatting'))
+async def filters_formatting(event)
+await event.answer("Sending Formatting information...", alert=True)
+await event.edit(
+"**Formatting**\n\n"
+"Rose supports a large number of formatting options to make your messages more expressive. Take a look!",
+buttons=[
+[Button.inline("Markdown Formatting", b"formatting_markdown"), Button.inline("Fillings", b"filters_fillings")],
+[Button.inline("Random Content", b"formatting_random_content"), Button.inline("Buttons", b"formatting_buttons")],
+[Button.inline("Back", b"help_back")]
+]
+)
 
 
 @client.on(events.CallbackQuery(data=b'help_back'))
