@@ -135,3 +135,23 @@ async def id_handler(event):
 
 if __name__ == "__main__":
     client.run_until_disconnected()
+
+import re
+
+# Refined regex pattern to capture URLs without query strings
+regex = r"(?i)\b(?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>?]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))*(?:(?:\?[^\s()<>]*)|(?=[^\s`!()\[\]{};:'\".,<>?《》""'']))*"
+
+# Input strings with URLs including query strings
+string1 = "https://t.me/Mahendra/12345?single-https://t.me/Mahendra/45678?single"
+string2 = "https://t.me/c/2187906000/12345?single-https://t.me/c/2187906000/45678?single"
+
+# Find all matches
+matches1 = re.findall(regex, string1)
+matches2 = re.findall(regex, string2)
+
+# Extract URLs from matches
+extracted_urls1 = [x[0] for x in matches1]
+extracted_urls2 = [x[0] for x in matches2]
+
+print("extracted_urls1 =", extracted_urls1)
+print("extracted_urls2 =", extracted_urls2)
