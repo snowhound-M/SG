@@ -157,3 +157,4 @@ print("extracted_urls1 =", extracted_urls1)
 print("extracted_urls2 =", extracted_urls2)
 
 (?i)\bhttps://[^\s()<>?-]+(?:(?=\s|(?=\s|[-\s]))|(?=\s|[-\s]))
+https:\/\/t\.me\/[^\/]+\/\d+
