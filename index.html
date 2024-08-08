@@ -26,5 +26,24 @@ III.         <input>        [input field for collecting a user input] {input con
 
      v) placeholder  [a placeholder value for input field]
 
+     vi) 
+
+
+DOM is a web API. DOM is an object-oriented representation of an HTML document, that is, each element in HTML document is represented as objects.
+DOM is a heirarchial tree of nodes where each node represents an HTML element. Root Node - document.
+DOM allows HTML documents to be manipulated dynamically.
+It is an entry point for JavaScript to interact with HTML and CSS.
+
+Each node (of generic type Node) can be an ELEMENT_NODE (of type Element), COMMENT_NODE, DOCUMENT_NODE AND TEXT_NODE.
+The type of a node can be determined by node.nodeType where a node represents a queried DOM node. 
+Each node has properties :
+- nodeName
+- nodeValue
+
+Element Querying
+document.querySelector() - returns a node (of type Node)
+document.querySelectorAll() - returns a collection of nodes called NodeList. This collection is an array-like object, not a JavaScript array. Use NodeList.length to determine the number of elements in the collection and use indexing to access the elements. Use Array.from(NodeList) to convert NodeList to an array (of type Array) and use array operations.
+
+
 -->
 
