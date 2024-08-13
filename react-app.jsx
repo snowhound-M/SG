@@ -3,6 +3,8 @@ import { React } from 'react';
 function App() {
   const [myTodoList, setMyTodoList] = useState([]);
   const [myNewTask, setMyNewTask] = useState("");
+  //const [myDeletedTask, setMyDeletedTask] = useState([]);
+  const [myDeletedTaskList, setMyDeletedTaskList] = useState([]);
 
   function addTask() {
     setMyNewTask(event.target.value);
@@ -17,8 +19,9 @@ function App() {
     setMyTodoList([...myTodoList, newTask]);
   }
 
-  function deleteTaskFromList() {
-    setMyNewTask(event.target.value);
+  function deleteTaskFromList(taskArg) {
+    setMyTodoList(myTodoList.filter((myTask) => { return myTask.id !=== taskArg.id}));
+    setMyDeletedTaskList([...myDeletedTaskList, taskArg]);
   }
   
   return (
@@ -33,11 +36,11 @@ function App() {
       </div>
       <div>
         <h3>YOUR CURRENT TASKS</h3>
-        {myTodoList.map((task) => {return <span key={task.id}>{task.id}. {task.taskName} <button>X</button></span>})}
+        {myTodoList.map((task) => {return <span>{task.id}.  {task.taskName} <button onClick={() => deleteTaskFromList(task)}>X</button></span>})}
       </div>
       <div>
         <h3> YOUR DELETED TASKS</h3>
-        {}
+        {myDeletedTaskList.map((task) => {return <span>{task.id}.  {task.taskName}  [ Deleted ]</span>})}
       </div>
     </>
   );
