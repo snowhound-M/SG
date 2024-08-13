@@ -33,12 +33,8 @@ function App() {
       </div>
       <div>
         <h3>YOUR CURRENT TASKS</h3>
-        {myTodoList.map((task) => ({task.id}. {task.taskName} <button>X</button>))}
+        {myTodoList.map((task) => {return <span key={task.id}>{task.id}. {task.taskName} <button>X</button></span>})}
       </div>
-      <div>
-              <h3>YOUR CURRENT TASKS</h3>
-  {myTodoList.map((task) => return <span>{task.id} {task.taskName}</span> <button> X </button>}
-</div>
       <div>
         <h3> YOUR DELETED TASKS</h3>
         {}
