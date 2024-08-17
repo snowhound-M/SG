@@ -84,3 +84,10 @@ a-   When using arrow functions within another functions, do not forget to use r
     Because if return is skipped in this case, the function will return undefined.
 b-   When using arrow functions, necessarily skip using return keyword if {} braces are themselves skipped.
 c-   When using arrow functions within another functions, you can include multiple statements with semicolons.
+
+class App {
+    constructor (name, age) {
+        this.name = name;
+        this.age = age;
+    }
+}
