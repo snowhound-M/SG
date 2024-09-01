@@ -91,3 +91,11 @@ class App {
         this.age = age;
     }
 }
+
+
+
+Document Object Model
+
+- DOM is a Web API, that is, it is a programming interface for web documents.
+- DOM is an objected-oriented representation and also an in-memory representation of HTML documents as a tree of nodes where each node is an object representing an HTML element.
+- A browser models an HTML document as a tree of nodes (DOM Tree) in memory (RAM). This modelled tree is a way for Javascript to interact with an HTML document rendered as a webpage in the browser.
